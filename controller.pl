@@ -11,7 +11,7 @@ my $dbpw = $ENV{"OPENSHIFT_MYSQL_DB_PASSWORD"};
 $dsn = "DBI:mysql:database=bitcoin;host=$dbhost;port=$dbport";
 $dbh = DBI->connect($dsn, $dbuser, $dbpw);
 
-for(1..20){
+for(1..800){
     $dbh->do("CREATE TABLE IF NOT EXISTS BTC (time BIGINT(20), value DOUBLE)");
     my $content = get($url);
     $dbh->do("INSERT INTO BTC VALUES (?, ?)", undef, time, $content);
