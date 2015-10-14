@@ -28,8 +28,8 @@ $datastring .= ']';
 #$datastring = '[{name:"test",data:[[1443705651000,4],[1444705653000,5],[1445705656000,4.7]]}]';
 
 $dbh->disconnect();
-my $q = CGI->new();
-print $q->header(), $q->start_html(-style=>"indexstyle.css");
+#my $q = CGI->new();
+#print $q->header(), $q->start_html(-style=>"indexstyle.css");
 print<<EOF
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
@@ -87,4 +87,4 @@ print<<EOF
 EOF
 ;
 
-print $q->end_html();
+#print $q->end_html();
