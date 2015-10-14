@@ -10,9 +10,10 @@ $dsn = "DBI:mysql:database=bitcoin;host=$dbhost;port=$dbport";
 $dbh = DBI->connect($dsn, $dbuser, $dbpw);
 $dbh->do("CREATE TABLE IF NOT EXISTS BTC (time BIGINT(20), value DOUBLE)");
 
+
+$name = "BTC";
 $datastring = '[';
 $datastring .= '{name:"'.$name.'",data:[';
-$name = "BTC";
 
 my $sth = $dbh->prepare("SELECT * FROM BTC");
 $sth->execute();
