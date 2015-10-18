@@ -51,7 +51,7 @@ for(1..6){
     $usd = $usdn/$score;
     $time = time;
     $dbh->do("INSERT INTO BTC VALUES (?, ?)", undef, $time, $newprice);
-    $dbh->do("INSERT INTO BTC VALUES (?, ?, ?, ?)", undef, $time, $btc, $score, $oldproduct*$score);
+    $dbh->do("INSERT INTO randbot VALUES (?, ?, ?, ?)", undef, $time, $btc, $score, $oldproduct*$score);
     sleep(20);
 }
 
