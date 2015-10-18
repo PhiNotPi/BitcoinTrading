@@ -12,8 +12,8 @@ $dsn = "DBI:mysql:database=bitcoin;host=$dbhost;port=$dbport";
 $dbh = DBI->connect($dsn, $dbuser, $dbpw);
 
 for(1..6){
-    $dbh->do("CREATE TABLE IF NOT EXISTS randbot (time BIGINT(20), value DOUBLE)");
-    $dbh->do("CREATE TABLE IF NOT EXISTS BTC (time BIGINT(20), stake DOUBLE, score DOUBLE, product DOUBLE)");
+    $dbh->do("CREATE TABLE IF NOT EXISTS BTC (time BIGINT(20), value DOUBLE)");
+    $dbh->do("CREATE TABLE IF NOT EXISTS randbot (time BIGINT(20), stake DOUBLE, score DOUBLE, product DOUBLE)");
     
     my $sth = $dbh->prepare("SELECT * FROM randbot ORDER BY time DESC LIMIT 1");
     $sth->execute();
