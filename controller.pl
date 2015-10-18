@@ -30,10 +30,10 @@ for(1..6){
     $btcn = `perl randbot.pl $btc`;
     $usdn = 1-$btcn;
     if($btcn > $btc){
-        $btcn -= 0.02($btcn - $btc);
+        $btcn -= 0.002($btcn - $btc);
     }
     elsif($usdn > $usd){
-        $usdn -= 0.02($usdn - $usd);
+        $usdn -= 0.002($usdn - $usd);
     }
     
     my $newprice = get($url);
