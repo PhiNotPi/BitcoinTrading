@@ -11,7 +11,7 @@ my $dbpw = $ENV{"OPENSHIFT_MYSQL_DB_PASSWORD"};
 $dsn = "DBI:mysql:database=bitcoin;host=$dbhost;port=$dbport";
 $dbh = DBI->connect($dsn, $dbuser, $dbpw);
 
-for(1..6){
+for(1..60){
     $dbh->do("CREATE TABLE IF NOT EXISTS BTC (time BIGINT(20), value DOUBLE)");
     $dbh->do("CREATE TABLE IF NOT EXISTS randbot (time BIGINT(20), stake DOUBLE, score DOUBLE, product DOUBLE)");
     
