@@ -10,21 +10,27 @@ $dsn = "DBI:mysql:database=bitcoin;host=$dbhost;port=$dbport";
 $dbh = DBI->connect($dsn, $dbuser, $dbpw);
 $dbh->do("CREATE TABLE IF NOT EXISTS BTC (time BIGINT(20), value DOUBLE)");
 
+@names = qw( BTC randbot );
 
-$name = "BTC";
 $datastring = '[';
-$datastring .= '{name:"'.$name.'",data:[';
-
-my $sth = $dbh->prepare("SELECT * FROM BTC");
-$sth->execute();
-while (my $ref = $sth->fetchrow_hashref()) {
-    if($ref->{'value'} ne ""){
-        $datastring .= "[".(1000 * ($ref->{'time'})).",$ref->{'value'}],";
+for $name (@names){
+    $datastring .= '{name:"'.$name.'",data:[';
+    
+    my $sth = $dbh->prepare("SELECT * FROM $name");
+    $sth->execute();
+    while (my $ref = $sth->fetchrow_hashref()) {
+        if($ref->{'value'} ne ""){
+            $datastring .= "[".(1000 * ($ref->{'time'})).",$ref->{'value'}],";
+        }
+        elsif($ref->{'product'} ne ""){
+            $datastring .= "[".(1000 * ($ref->{'time'})).",$ref->{'product'}],";
+        }
     }
+    $sth->finish();
+    $datastring =~ s/,$//;
+    $datastring .= ']},';
 }
-$sth->finish();
 $datastring =~ s/,$//;
-$datastring .= ']}';
 $datastring .= ']';
 #$datastring = '[{name:"test",data:[[1443705651000,4],[1444705653000,5],[1445705656000,4.7]]}]';
 
